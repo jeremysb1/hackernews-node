@@ -8,7 +8,7 @@ let links = [{
   description: 'Fullstack tutorial for GraphQL'
 }]
 
-let idCOunt = links.length
+let idCount = links.length
 const resolvers = {
   Query: {
   	info: () => `This is the API of a Hacker News Clone`,
