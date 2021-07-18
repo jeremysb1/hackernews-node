@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const { ApolloServer } = require('apollo-server');
 const fs = require('fs');
 const path = require('path');
+const { getUserId } = require('./utils');
 
 const resolvers = {
   Query: {
@@ -31,10 +32,17 @@ const server = new ApolloServer({
     'utf8'
   ),
   resolvers,
-  context: {
-    prisma,
+  context: ({}) => {
+    return {
+      ...req,
+      prisma,
+      userId: 
+        req && req.headers.authorization
+          ? getUserId(req)
+          : null
+    };
   }
-})
+});
 
 server
   .listen()
