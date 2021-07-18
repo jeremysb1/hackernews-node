@@ -27,11 +27,10 @@ async function login(parent, args, context, info) {
   }
 
   // compare the provided password with the one that is stored in the database
-  const valid = await bcrypt.compare(args.password, user.password) {
+  const valid = await bcrypt.compare(args.password, user.password)
   	if(!valid) {
   	  throw new Error('Invalid Password')
   	}
-  }
 
   return {
   	token,
